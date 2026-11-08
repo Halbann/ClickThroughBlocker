@@ -1,9 +1,9 @@
 {
   "NAME": "ClickThroughBlocker",
-  "URL": "https://raw.githubusercontent.com/linuxgurugamer/ClickThroughBlocker/refs/heads/master/GameData/000_ClickThroughBlocker/ClickThroughBlocker.version",
-  "DOWNLOAD": "https://github.com/linuxgurugamer/ClickThroughBlocker/releases",
+  "URL": "https://raw.githubusercontent.com/Halbann/ClickThroughBlocker/refs/heads/master/GameData/000_ClickThroughBlocker/ClickThroughBlocker.version",
+  "DOWNLOAD": "https://github.com/Halbann/ClickThroughBlocker/releases",
   "GITHUB": {
-    "USERNAME": "linuxgurugamer",
+    "USERNAME": "Halbann",
     "REPOSITORY": "ClickThroughBlocker"
   },
   "VERSION": "3.0.0.0",
