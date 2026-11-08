@@ -1,6 +1,4 @@
-﻿using ClickThroughFix;
-using System;
-using System.Collections;
+﻿using System;
 using UnityEngine;
 
 namespace ClearAllInputLocks
@@ -11,14 +9,10 @@ namespace ClearAllInputLocks
         void Start()
         {
             GameEvents.onGameSceneLoadRequested.Add(onGameSceneLoadRequested);
-            GameEvents.onGUIApplicationLauncherReady.Add(onGUIApplicationLauncherReady);
-            GameEvents.onLevelWasLoadedGUIReady.Add(onLevelWasLoadedGUIReady);
         }
         void OnDestroy()
         {
             GameEvents.onGameSceneLoadRequested.Remove(onGameSceneLoadRequested);
-            GameEvents.onGUIApplicationLauncherReady.Remove(onGUIApplicationLauncherReady);
-            GameEvents.onLevelWasLoadedGUIReady.Remove(onLevelWasLoadedGUIReady);
         }
 
         bool ongameSceneLoadRequestedCalled = false;
@@ -29,49 +23,6 @@ namespace ClearAllInputLocks
                 ongameSceneLoadRequestedCalled = true;
                 InputLockManager.ClearControlLocks();
             }
-        }
-
-        bool onGUIApplicationLauncherReadyCalled = false;
-        void onGUIApplicationLauncherReady()
-        {
-            if (!onGUIApplicationLauncherReadyCalled)
-            {
-                onGUIApplicationLauncherReadyCalled = true;
-                if (!isRunning)
-                    StartCoroutine("CleanupInputLocks");
-            }
-        }
-
-        bool onLevelWasLoadedGUIReadycalled = false;
-        void onLevelWasLoadedGUIReady(GameScenes gs)
-        {
-            if (!onLevelWasLoadedGUIReadycalled)
-            {
-                onLevelWasLoadedGUIReadycalled = true;
-                if (!isRunning)
-                    StartCoroutine("CleanupInputLocks");
-            }
-        }
-
-        void StopStartCoroutine()
-        {
-            StopCoroutine("CleanupInputLocks");
-            StartCoroutine("CleanupInputLocks");
-        }
-
-        bool isRunning = false;
-        IEnumerator CleanupInputLocks()
-        {
-            //Log.Info("CleanUpInputLocks entry");
-            isRunning = true;
-            yield return new WaitForSeconds(Settings.cleanupDelay);
-            if (Versioning.version_major == 1 && Versioning.version_minor < 11)
-            {
-                InputLockManager.ClearControlLocks();
-                yield return null;
-            }
-            isRunning = false;
-            //Log.Info("CleanUpInputLocks exit");
         }
     }
 }

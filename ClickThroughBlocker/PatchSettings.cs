@@ -18,25 +18,13 @@ namespace ClickThroughFix
             // https://github.com/KSPModdingLibs/KSPCommunityFixes/blob/441f2d7e0ab844cbc3bd86ef2c5410c245f08cb9/KSPCommunityFixes/Internal/PatchSettings.cs#L54
 
             List<DialogGUIBase> modifiedList = __result.ToList();
-            List<DialogGUIBase> additions = new List<DialogGUIBase>(3);
+            List<DialogGUIBase> additions = new List<DialogGUIBase>(1);
 
             // Focus Follows Click Toggle.
             var toggleLabel = new DialogGUILabel("Focus Follows Click:", 150f);
             var toggle = new DialogGUIToggle(() => Settings.focusFollowsclick, "", b => Settings.focusFollowsclick = b, 150f);
 
             additions.Add(new DialogGUIHorizontalLayout(0f, 18f, 0f, new RectOffset(), TextAnchor.MiddleLeft, toggleLabel, toggle, new DialogGUIFlexibleSpace()));
-
-            // Clean up delay slider.
-            if (!(Versioning.version_major == 1 && Versioning.version_minor >= 11))
-            {
-                DialogGUISlider slider = new DialogGUISlider(() => Settings.cleanupDelay, 0.1f, 5f, false, 150f, -1f, f => Settings.cleanupDelay = f);
-                DialogGUILabel label = new DialogGUILabel(() => Settings.cleanupDelay.ToString(), 80);
-
-                DialogGUIHorizontalLayout entry = new DialogGUIHorizontalLayout(0f, 18f, 0f, new RectOffset(), TextAnchor.MiddleLeft,
-                    new DialogGUILabel("Cleanup Delay:", 150f), slider, new DialogGUISpace(30f), label);
-
-                additions.Add(entry);
-            }
 
             // Add the new entries to the list after UI but before the Flight UI section (or the end of the list if not in Flight).
             int index = modifiedList.Count;

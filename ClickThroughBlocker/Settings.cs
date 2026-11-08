@@ -7,7 +7,6 @@ namespace ClickThroughFix
     {
         public static bool focusFollowsclick = false;
         public static bool universalClickBlocking = true;
-        public static float cleanupDelay = 0.5f;
 
         private static string GlobalDefaultFile =>
             Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../Global.cfg";
@@ -26,10 +25,6 @@ namespace ClickThroughFix
             bool universalClickBlocking = false;
             if (globalSettings.TryGetValue("universalClickBlocking", ref universalClickBlocking))
                 Settings.universalClickBlocking = universalClickBlocking;
-
-            float cleanupDelay = 0;
-            if (globalSettings.TryGetValue("cleanupDelay", ref cleanupDelay))
-                Settings.cleanupDelay = cleanupDelay;
         }
 
         public static void Save()
@@ -37,7 +32,6 @@ namespace ClickThroughFix
             ConfigNode globalSettings = new ConfigNode();
             globalSettings.AddValue("focusFollowsClick", focusFollowsclick);
             globalSettings.AddValue("universalClickBlocking", universalClickBlocking);
-            globalSettings.AddValue("cleanupDelay", cleanupDelay);
             globalSettings.Save(GlobalDefaultFile);
         }
     }
