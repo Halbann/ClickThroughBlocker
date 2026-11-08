@@ -26,12 +26,6 @@ namespace ClickThroughFix
 
             additions.Add(new DialogGUIHorizontalLayout(0f, 18f, 0f, new RectOffset(), TextAnchor.MiddleLeft, toggleLabel, toggle, new DialogGUIFlexibleSpace()));
 
-            // Universal click blocking toggle.
-            var universalLabel = new DialogGUILabel("Universal Click Blocking:", 150f);
-            var universalToggle = new DialogGUIToggle(() => Settings.universalClickBlocking, "", b => Settings.universalClickBlocking = b, 150f);
-
-            additions.Add(new DialogGUIHorizontalLayout(0f, 18f, 0f, new RectOffset(), TextAnchor.MiddleLeft, universalLabel, universalToggle, new DialogGUIFlexibleSpace()));
-
             // Clean up delay slider.
             if (!(Versioning.version_major == 1 && Versioning.version_minor >= 11))
             {

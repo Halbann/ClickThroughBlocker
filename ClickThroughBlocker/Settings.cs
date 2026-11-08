@@ -6,7 +6,7 @@ namespace ClickThroughFix
     public static class Settings
     {
         public static bool focusFollowsclick = false;
-        public static bool universalClickBlocking = false;
+        public static bool universalClickBlocking = true;
         public static float cleanupDelay = 0.5f;
 
         private static string GlobalDefaultFile =>
